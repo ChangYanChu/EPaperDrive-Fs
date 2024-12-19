@@ -84,72 +84,78 @@ void EPaperDrive::SetFont(FONT fontindex)
     switch (fontindex)
     {
     case 0:
-        fontname = "/font16";
+        fontname = "/font/font16";
         fontwidth = 16;
         fontheight = 16;
         break;
     case 1:
-        fontname = "/font32";
+        fontname = "/font/font32";
         fontwidth = 32;
         fontheight = 32;
         break;
     case 2:
-        fontname = "/font10";
+        fontname = "/font/font10";
         fontwidth = 10;
         fontheight = 10;
         break;
     case 3:
-        fontname = "/font12";
+        fontname = "/font/font12";
         fontwidth = 12;
         fontheight = 12;
         break;
     case 5:
-        fontname = "/font70";
+        fontname = "/font/font70";
         fontwidth = 70;
         fontheight = 70;
         break;
     case 6:
-        fontname = "/font12num";
+        fontname = "/font/font12num";
         fontwidth = 12;
         fontheight = 12;
         break;
     case 7:
-        fontname = "/font24";
+        fontname = "/font/font24";
         fontwidth = 24;
         fontheight = 24;
         break;
     case 8:
-        fontname = "/font8";
+        fontname = "/font/font8";
         fontwidth = 8;
         fontheight = 8;
         break;
     case 9:
-        fontname = "/font100num";
+        fontname = "/font/font100num";
         fontwidth = 100;
         fontheight = 100;
         break;
     case 11:
-        fontname = "/weathericon";
+        fontname = "/font/weathericon";
         fontwidth = 32;
         fontheight = 32;
         break;
     case 12:
-        fontname = "/weathericon80";
+        fontname = "/font/weathericon80";
         fontwidth = 80;
         fontheight = 80;
         break;
     case 13:
-        fontname = "/weathericon32";
+        fontname = "/font/weathericon32";
         fontwidth = 32;
         fontheight = 32;
         break;
     case 14:
-        fontname = "/weathericon50";
+        fontname = "/font/weathericon50";
         fontwidth = 50;
         fontheight = 50;
         break;
     }
+
+    // 检查文件是否存在
+    if (!UserFS->exists(fontname)) {
+        Serial.printf("Font file %s does not exist!\n", fontname);
+    }
 }
+
 void EPaperDrive::DrawCircle(int x, int y, int r, bool fill)
 {
     if (fill == 0)
