@@ -148,7 +148,58 @@ void EPaperDrive::SetFont(FONT fontindex)
         fontwidth = 50;
         fontheight = 50;
         break;
+    case 15:
+        fontname = "/font/font20";
+        fontwidth = 10;
+        fontheight = 20;
+        break;
+    case 16:
+        fontname = "/font/font25";
+        fontwidth = 11;
+        fontheight = 25;
+        break;
+    case 17:
+        fontname = "/font/font30";
+        fontwidth = 13;
+        fontheight = 30;
+        break;
+    case 18:
+        fontname = "/font/font35";
+        fontwidth = 15;
+        fontheight = 35;
+        break;
+    case 19:
+        fontname = "/font/font40";
+        fontwidth = 17;
+        fontheight = 40;
+        break;
+    case 20:
+        fontname = "/font/font45";
+        fontwidth = 19;
+        fontheight = 45;
+        break;
+    case 21:
+        fontname = "/font/font50";
+        fontwidth = 21;
+        fontheight = 50;
+        break;
+    case 22:
+        fontname = "/font/font55";
+        fontwidth = 23;
+        fontheight = 55;
+        break;
+    case 23:
+        fontname = "/font/font60";
+        fontwidth = 25;
+        fontheight = 60;
+        break;
+    case 24:
+        fontname = "/font/font65";
+        fontwidth = 27;
+        fontheight = 65;
+        break;
     }
+    
 
     // 检查文件是否存在
     if (!UserFS->exists(fontname)) {
