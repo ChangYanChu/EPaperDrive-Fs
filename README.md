@@ -33,6 +33,9 @@
 |GDEY042Z98|SSD1683|<https://www.good-display.cn/product/378.html>|
 |HINKE0266A15A0|SSD1675||
 
+## 字体生成软件
+可以使用 [FontMaker]([https://github.com/duck531a98](https://gitee.com/kerndev/FontMaker)) 进行生成字体文件
+
 ## 致谢
 非常感谢Duck大佬的支持，这个驱动库最开始的架构也是出自于他，这是他的[个人主页](https://github.com/duck531a98)以及最开始的[开源链接](https://github.com/duck531a98/esp8266-weather-station-epaper),我入坑于电子便是受到了他的影响，同时也非常感谢他教会了我很多编程以及电子的知识，同时在我成长的道路上也一直支持鼓励着我。  
 同时也非常感谢在我学习的路上支持着我的各位大佬，是你们的存在让我在漫天的bug中找到继续学习下去的动力。
