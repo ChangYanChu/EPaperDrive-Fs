@@ -1,6 +1,6 @@
 #pragma once
 
-//#include "spline.h"
+// #include "spline.h"
 
 #include <Arduino.h>
 #include <SPI.h>
@@ -52,6 +52,16 @@ enum FONT
   ICON32 = 13,
   ICON80 = 12,
   ICON50 = 14,
+  FONT20 = 15,
+  FONT25 = 16,
+  FONT30 = 17,
+  FONT35 = 18,
+  FONT40 = 19,
+  FONT45 = 20,
+  FONT50 = 21,
+  FONT55 = 22,
+  FONT60 = 23,
+  FONT65 = 24
 };
 enum epd_type
 {
@@ -117,7 +127,7 @@ public:
   void deepsleep(void);
 
   uint8_t fontscale;                ///> 字体缩放，仅支持1，2
-  uint8_t frame;                    //用于4灰度屏，fram=0,在2bit中的第一个bit中存储图像，frame=1在第二bit种存储图像
+  uint8_t frame;                    // 用于4灰度屏，fram=0,在2bit中的第一个bit中存储图像，frame=1在第二bit种存储图像
   uint8_t EPDbuffer[400 * 300 / 8]; ///>屏幕图像
   epd_type EPD_Type;
 
@@ -126,7 +136,7 @@ public:
    *
    * @param userFS 应当传入的文件系统的指针
    */
-  void SetFS(fs::FS* FSType);
+  void SetFS(fs::FS *FSType);
 
   /**
    * @brief 设置采用硬件spi的通道（用户请先初始化SPI之后再传入对应SPI的指针）
@@ -254,7 +264,7 @@ public:
    * @param end 线结束的x坐标
    * @param y 线的y坐标
    */
-  void DrawYline(int start, int end, int y); //画竖线
+  void DrawYline(int start, int end, int y); // 画竖线
 
   /**
    * @brief 在图像缓存中画横线（一个像素）
@@ -263,7 +273,7 @@ public:
    * @param end 线结束的y坐标
    * @param x 线的x坐标
    */
-  void DrawXline(int start, int end, int x); //画横线
+  void DrawXline(int start, int end, int x); // 画横线
 
   /**
    * @brief 在图像缓存中画直线
@@ -303,7 +313,7 @@ public:
    * @param date 我也不知道这是啥，看函数定义里面好像没啥用
    * @param week 需要显示的这几天每天是星期几（例如1,2,3,4）
    */
-  void DrawWeatherChart(int xmin, int xmax, int ymin, int ymax, int point_n, int show_n, String tmax, String tmin, String code_d, String code_n, String text_d, String text_n, String date, String week); //绘制天气温度变化曲线
+  void DrawWeatherChart(int xmin, int xmax, int ymin, int ymax, int point_n, int show_n, String tmax, String tmin, String code_d, String code_n, String text_d, String text_n, String date, String week); // 绘制天气温度变化曲线
 
   /**
    * @brief 在图像缓存中画圆
@@ -313,7 +323,7 @@ public:
    * @param r 半径长度
    * @param fill 0为空心圆；1为实心圆
    */
-  void DrawCircle(int x, int y, int r, bool fill); //画圆圈，xy圆心，r半径
+  void DrawCircle(int x, int y, int r, bool fill); // 画圆圈，xy圆心，r半径
 
   /**
    * @brief 在图像缓存中画实心矩形
@@ -323,7 +333,7 @@ public:
    * @param w 矩形的宽度
    * @param h 矩形的高度
    */
-  void DrawBox(uint8_t x, int y, int w, int h); //画矩形，填充
+  void DrawBox(uint8_t x, int y, int w, int h); // 画矩形，填充
 
   /**
    * @brief 在图像缓存中画空心矩形
@@ -333,7 +343,7 @@ public:
    * @param w 矩形的宽度
    * @param h 矩形的高度
    */
-  void DrawEmptyBox(int x, int y, int w, int h); //画矩形，空心
+  void DrawEmptyBox(int x, int y, int w, int h); // 画矩形，空心
 
   /**
    * @brief 在图像缓存中画水平方向的柱状图（显示空气质量数据的，不建议使用）
@@ -348,7 +358,7 @@ public:
    * @param c5 第5个数据
    * @param c6 第6个数据
    */
-  void DrawChart(int x, int y, int w, int c1, int c2, int c3, int c4, int c5, int c6); //画水平方向的柱状图，w图表宽度，c1-C6变量
+  void DrawChart(int x, int y, int w, int c1, int c2, int c3, int c4, int c5, int c6); // 画水平方向的柱状图，w图表宽度，c1-C6变量
 
   /**
    * @brief 在图像缓存中画圆环图表（显示空气质量数据的，不建议使用）
@@ -361,7 +371,7 @@ public:
    * @param c2 第2个数据
    * @param c3 第3个数据
    */
-  void DrawCircleChart(int x, int y, int r, int w, int c1, int c2, int c3); //画圆环图表，r半径，w圆环宽，c1-c3变量
+  void DrawCircleChart(int x, int y, int r, int w, int c1, int c2, int c3); // 画圆环图表，r半径，w圆环宽，c1-c3变量
 
   /**
    * @brief 在图像缓存中绘制图像
@@ -372,7 +382,7 @@ public:
    * @param height 图像的高度
    * @param xbm 图像的指针
    */
-  void drawXbm(int16_t xMove, int16_t yMove, int16_t width, int16_t height, uint8_t *xbm); //绘制图像
+  void drawXbm(int16_t xMove, int16_t yMove, int16_t width, int16_t height, uint8_t *xbm); // 绘制图像
 
   /**
    * @brief 在图像缓存中画以PROGMEM类型储存图片
@@ -464,9 +474,8 @@ public:
   void EPD_Write(uint8_t *value, uint8_t datalen);
 
   void EPD_WriteDispRam_Old(unsigned int XSize, unsigned int YSize, uint8_t *Dispbuff, unsigned int offset, uint8_t label);
-    void EPD_WriteDispRam(unsigned int XSize, unsigned int YSize, uint8_t *Dispbuff, unsigned int offset, uint8_t label);
-    void EPD_SetRamPointer(uint16_t addrX, uint8_t addrY, uint8_t addrY1);
-
+  void EPD_WriteDispRam(unsigned int XSize, unsigned int YSize, uint8_t *Dispbuff, unsigned int offset, uint8_t label);
+  void EPD_SetRamPointer(uint16_t addrX, uint8_t addrY, uint8_t addrY1);
 
 private:
   uint8_t _CS;
@@ -478,7 +487,6 @@ private:
   bool _SPIMode;
 
   fs::FS *UserFS;
-
 
   SPIClass *MySPI;
 
@@ -495,12 +503,12 @@ private:
 
   void EPD_WriteDispRam_RED(unsigned int XSize, unsigned int YSize, uint8_t *Dispbuff, unsigned int offset, uint8_t label);
   // void EPD_SetRamArea(uint16_t Xstart,uint16_t Xend,uint8_t Ystart,uint8_t Ystart1,uint8_t Yend,uint8_t Yend1);
-  
+
   void EPD_WirteLUT(uint8_t *LUTvalue, uint8_t Size);
 
   void EPD_Init(void);
   void EPD_WriteCMD_p1(uint8_t command, uint8_t para);
-  
+
   void EPD_SetRamArea(uint16_t Xstart, uint16_t Xend, uint8_t Ystart, uint8_t Ystart1, uint8_t Yend, uint8_t Yend1);
 
   int getIcon(int weathercodeindex);
@@ -508,6 +516,4 @@ private:
   void InversePixel(int16_t x, int16_t y);
   void DrawUTF(int16_t x, int16_t y, uint8_t width, uint8_t height, uint8_t *code);
   int UTFtoUNICODE(uint8_t *code);
-
-
 };
