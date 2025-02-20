@@ -722,7 +722,7 @@ void EPaperDrive::DrawUnicodeChar(int16_t x, int16_t y, uint8_t width, uint8_t h
         offset = (code[1] - 0x20) * sizeofsinglechar;  // 从空格(0x20)开始计算偏移
         
         // 添加调试信息
-        Serial.printf("ASCII char: %c (0x%02X), offset: %d\n", code[1], code[1], offset);
+        // Serial.printf("ASCII char: %c (0x%02X), offset: %d\n", code[1], code[1], offset);
     } else {
         offset = (code[0] * 0x100 + code[1]) * sizeofsinglechar;
     }
