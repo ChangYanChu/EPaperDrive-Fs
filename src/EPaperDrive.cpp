@@ -105,7 +105,7 @@ void EPaperDrive::SetFont(FONT fontindex)
         break;
     case 5:
         fontname = "/font/font70";
-        fontwidth = 70;
+        fontwidth = 33;
         fontheight = 70;
         break;
     case 6:
