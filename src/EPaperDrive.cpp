@@ -150,27 +150,27 @@ void EPaperDrive::SetFont(FONT fontindex)
         break;
     case 15:
         fontname = "/font/font20";
-        fontwidth = 10;
+        fontwidth = 20;
         fontheight = 20;
         break;
     case 16:
         fontname = "/font/font25";
-        fontwidth = 11;
+        fontwidth = 25;
         fontheight = 25;
         break;
     case 17:
         fontname = "/font/font30";
-        fontwidth = 13;
+        fontwidth = 30;
         fontheight = 30;
         break;
     case 18:
         fontname = "/font/font35";
-        fontwidth = 15;
+        fontwidth = 35;
         fontheight = 35;
         break;
     case 19:
         fontname = "/font/font40";
-        fontwidth = 17;
+        fontwidth = 40;
         fontheight = 40;
         break;
     case 20:
@@ -180,22 +180,22 @@ void EPaperDrive::SetFont(FONT fontindex)
         break;
     case 21:
         fontname = "/font/font50";
-        fontwidth = 21;
+        fontwidth = 50;
         fontheight = 50;
         break;
     case 22:
         fontname = "/font/font55";
-        fontwidth = 23;
+        fontwidth = 55;
         fontheight = 55;
         break;
     case 23:
         fontname = "/font/font60";
-        fontwidth = 25;
+        fontwidth = 60;
         fontheight = 60;
         break;
     case 24:
         fontname = "/font/font65";
-        fontwidth = 27;
+        fontwidth = 65;
         fontheight = 65;
         break;
     }
