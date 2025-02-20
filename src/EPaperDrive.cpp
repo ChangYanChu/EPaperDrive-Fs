@@ -175,7 +175,7 @@ void EPaperDrive::SetFont(FONT fontindex)
         break;
     case 20:
         fontname = "/font/font45";
-        fontwidth = 19;
+        fontwidth = 45;
         fontheight = 45;
         break;
     case 21:
@@ -713,40 +713,31 @@ int EPaperDrive::UTFtoUNICODE(uint8_t *code)
 void EPaperDrive::DrawUnicodeChar(int16_t x, int16_t y, uint8_t width, uint8_t height, uint8_t *code)
 {
 
+    int sizeofsinglechar = (height % 8 == 0) ? (height / 8) * width : (height / 8 + 1) * width;
     int offset;
-    int sizeofsinglechar;
-    if (height % 8 == 0)
-        sizeofsinglechar = (height / 8) * width;
-    else
-        sizeofsinglechar = (height / 8 + 1) * width;
-    offset = (code[0] * 0x100 + code[1]) * sizeofsinglechar;
-    // Serial.printf("offset:%d",offset);
-    // Serial.println("code[1]");
-    // Serial.println(code[1]);
-    //Serial.println("sizeofsinglechar");
-    //Serial.println(sizeofsinglechar);
-    // File f = UserFS->open(fontname, "r");
+    
+    // 检查是否为ASCII字符
+    if (code[0] == 0x00) {
+        // ASCII字符偏移修正
+        offset = (code[1] - 0x20) * sizeofsinglechar;  // 从空格(0x20)开始计算偏移
+        
+        // 添加调试信息
+        Serial.printf("ASCII char: %c (0x%02X), offset: %d\n", code[1], code[1], offset);
+    } else {
+        offset = (code[0] * 0x100 + code[1]) * sizeofsinglechar;
+    }
+
     File f = UserFS->open(fontname, "r");
+    if (!f) {
+        Serial.printf("Failed to open font file: %s\n", fontname.c_str());
+        return;
+    }
     f.seek(offset, SeekSet);
     char zi[sizeofsinglechar];
     f.readBytes(zi, sizeofsinglechar);
-    /*for(int i=0;i<32;i++)
-  {
-
-   Serial.println(zi[i],HEX);
-    }*/
-    // Serial.println("offset");
-    // Serial.println(offset);
-    if (offset < 0xff * sizeofsinglechar && FontIndex < 10)
-    {
-        drawXbm(x, y, width, height, (uint8_t *)zi);
-    }
-    else
-    {
-        drawXbm(x, y, width, height, (uint8_t *)zi);
-    }
-
-    // SPIFFS.end();
+    f.close();
+    
+    drawXbm(x, y, width, height, (uint8_t *)zi);
 }
 
 void EPaperDrive::DrawUnicodeStr(int16_t x, int16_t y, uint8_t width, uint8_t height, uint8_t strlength, uint8_t *code)
