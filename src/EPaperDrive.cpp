@@ -105,7 +105,7 @@ void EPaperDrive::SetFont(FONT fontindex)
         break;
     case 5:
         fontname = "/font/font70";
-        fontwidth = 70;
+        fontwidth = 33;
         fontheight = 70;
         break;
     case 6:
@@ -1183,8 +1183,8 @@ void EPaperDrive::deepsleep(void)
         EPD_WriteData(0xf7); // border floating
         EPD_WriteCMD(0x02);  // power off
         // ReadBusy();
-        EPD_WriteCMD(0x07); // sleep
-        EPD_WriteData(0xa5);
+        // EPD_WriteCMD(0x07); // sleep
+        // EPD_WriteData(0xa5);
     }
 }
 
