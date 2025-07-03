@@ -13,6 +13,7 @@ EPaperDrive::EPaperDrive(bool SPIMode, uint8_t CS, uint8_t RST, uint8_t DC, uint
     _CLK = CLK;
     _DIN = DIN;
     _SPIMode = SPIMode;
+    _rotation = ROTATE_0; // 默认0度方向
     if (SPIMode == 0)
     {
         pinMode(CS, OUTPUT); // io初始化
@@ -943,8 +944,40 @@ void EPaperDrive::DrawXbm_spiff_gray(int16_t xMove, int16_t yMove, int16_t width
     }
     f.close();
 }
+
+void EPaperDrive::TransformCoordinates(int16_t &x, int16_t &y)
+{
+    int16_t temp;
+    
+    switch (_rotation)
+    {
+    case ROTATE_0:
+        // 不变换
+        break;
+    case ROTATE_90:
+        // 90度顺时针旋转: (x,y) -> (y, width-1-x)
+        temp = x;
+        x = y;
+        y = xDot - 1 - temp;
+        break;
+    case ROTATE_180:
+        // 180度旋转: (x,y) -> (width-1-x, height-1-y)
+        x = xDot - 1 - x;
+        y = yDot - 1 - y;
+        break;
+    case ROTATE_270:
+        // 270度顺时针旋转: (x,y) -> (height-1-y, x)
+        temp = x;
+        x = yDot - 1 - y;
+        y = temp;
+        break;
+    }
+}
+
 void EPaperDrive::SetPixel(int16_t x, int16_t y)
 {
+    // 应用旋转变换
+    TransformCoordinates(x, y);
 
     if (EPD_Type == OPM42 || EPD_Type == DKE42_3COLOR || EPD_Type == WF42 || EPD_Type == GDEY042Z98)
     {
@@ -975,6 +1008,8 @@ void EPaperDrive::SetPixel(int16_t x, int16_t y)
 }
 void EPaperDrive::InversePixel(int16_t x, int16_t y)
 {
+    // 应用旋转变换
+    TransformCoordinates(x, y);
 
     if (EPD_Type == OPM42 || EPD_Type == DKE42_3COLOR || EPD_Type == WF42 || EPD_Type == GDEY042Z98)
     {
@@ -1016,6 +1051,12 @@ void EPaperDrive::clearbuffer()
         for (int i = 0; i < (xDot * yDot / 8); i++)
             EPDbuffer[i] = 0xff;
 }
+
+void EPaperDrive::SetRotation(ROTATION rotation)
+{
+    _rotation = rotation;
+}
+
 void EPaperDrive::EPD_Set_Model(uint8_t model)
 {
     EPD_Type = epd_type(model);

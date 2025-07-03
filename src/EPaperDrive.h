@@ -86,6 +86,14 @@ enum EPDFS
   spiffs = 1,
   fatfs = 2,
 };
+
+enum ROTATION
+{
+  ROTATE_0 = 0,   // 0度，正常方向
+  ROTATE_90 = 1,  // 90度顺时针
+  ROTATE_180 = 2, // 180度
+  ROTATE_270 = 3  // 270度顺时针
+};
 /*
  * 典型使用流程
  * 1.EPD_init_Full/EPD_init_Part初始化
@@ -426,6 +434,13 @@ public:
   void EPD_Set_Contrast(uint8_t vcom);
 
   /**
+   * @brief 设置屏幕显示方向
+   *
+   * @param rotation 显示方向，支持0、90、180、270度旋转
+   */
+  void SetRotation(ROTATION rotation);
+
+  /**
    * @brief 墨水屏全刷更新
    *
    */
@@ -497,6 +512,7 @@ private:
   int16_t CurrentCursor;
   uint8_t fontwidth;
   uint8_t fontheight;
+  ROTATION _rotation; // 当前显示方向
 
   void SPI_Write(uint8_t value);
   void driver_delay_xms(unsigned long xms);
@@ -516,4 +532,5 @@ private:
   void InversePixel(int16_t x, int16_t y);
   void DrawUTF(int16_t x, int16_t y, uint8_t width, uint8_t height, uint8_t *code);
   int UTFtoUNICODE(uint8_t *code);
+  void TransformCoordinates(int16_t &x, int16_t &y); // 坐标变换函数
 };
